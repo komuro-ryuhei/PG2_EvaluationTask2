@@ -63,15 +63,19 @@ void Game::Update(char* keys, char* preKeys) {
 
 	//敵と弾の当たり判定
 	for (int i = 0; i < 4; i++) {
-		if (collision->isHit(player->BulletGetPos(), player->BulletGetRadius()
-			, enemy[i]->GetPos(), enemy[i]->GetRadius()) ||
-			collision->isHit(player->BulletGetPos(), player->BulletGetRadius(),
-				enemy[i]->GetPos(), enemy[i]->GetRadius())) {
+		if (enemy[i]->GetisAlive()) {
+			if (collision->isHit(player->BulletGetPos(), player->BulletGetRadius()
+				, enemy[i]->GetPos(), enemy[i]->GetRadius()) ||
+				collision->isHit(player->BulletGetPos(), player->BulletGetRadius(),
+					enemy[i]->GetPos(), enemy[i]->GetRadius())) {
 
-			enemy[i]->SetisAlive(false);
+				enemy[i]->SetisAlive(false);
+				player->BulletSetisShot(false);
+			}
 		}
 	}
 
+	//敵のリスポーン処理
 	for (int i = 0; i < 4; i++) {
 		if (!enemy[i]->GetisAlive()) {
 

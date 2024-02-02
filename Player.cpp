@@ -43,6 +43,18 @@ void Player::Update(char* keys, char* preKeys) {
 			pos_.y += speed_;
 		}
 
+		if (pos_.x > 1280 - radius_) {
+			pos_.x = 1280 - radius_;
+		} else if (pos_.x < 0 + radius_) {
+			pos_.x = 0 + radius_;
+		}
+
+		if (pos_.y > 720 - radius_) {
+			pos_.y = 720 - radius_;
+		} else if (pos_.y < 0 + radius_) {
+			pos_.y = 0 + radius_;
+		}
+
 		if (!bullet_->isShot_) {
 			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE]) {
 
@@ -64,6 +76,4 @@ void Player::Draw() {
 	}
 
 	bullet_->Draw();
-
-	Novice::ScreenPrintf(10, 10, "%d", bullet_->isShot_);
 }

@@ -30,6 +30,10 @@ public:
 	Vector2 BulletGetPos() { return bullet_->pos_; }
 	float BulletGetSpeed() { return bullet_->speed_; }
 	float BulletGetRadius() { return bullet_->radius_; }
+	bool BulletSetisShot(bool isShot) {
+
+		return bullet_->isShot_ = isShot;
+	}
 
 private:
 
